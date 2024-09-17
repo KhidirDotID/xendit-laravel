@@ -3,6 +3,7 @@
 namespace KhidirDotID\Xendit;
 
 use Xendit\Configuration;
+use Xendit\Invoice\AddressObject;
 use Xendit\Invoice\CreateInvoiceRequest;
 use Xendit\Invoice\CustomerObject;
 use Xendit\Invoice\Invoice;
@@ -50,6 +51,16 @@ class Xendit
     public static function createInvoice(array $data): Invoice
     {
         if (isset($data['customer'])) {
+            if (isset($data['customer']['addresses'])) {
+                foreach ($data['customer']['addresses'] as $address) {
+                    if (!is_array($address)) {
+                        throw new \Exception('address must be of type array');
+                    }
+
+                    $address = new AddressObject($address);
+                }
+            }
+
             $data['customer'] = new CustomerObject($data['customer']);
         }
 
