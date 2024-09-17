@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static void setXenditKey(string $apiKey)
- * @method static mixed createInvoice(array $data)
- * @method static mixed getInvoiceById(string $invoiceId)
+ * @method static \Xendit\Invoice\Invoice createInvoice(array $data)
+ * @method static \Xendit\Invoice\Invoice getInvoiceById(string $invoiceId)
  */
 class Xendit extends Facade
 {
