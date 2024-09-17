@@ -38,10 +38,10 @@ A Xendit Wrapper for Laravel
 
     try {
         // Get Payment Page URL
-        $paymentUrl = \Xendit::createInvoice($data)->invoice_url;
+        $paymentUrl = \Xendit::createInvoice($data);
 
         // Redirect to Payment Page
-        return redirect()->away($paymentUrl);
+        return redirect()->away($paymentUrl['invoice_url']);
     } catch (\Throwable $th) {
         throw $th;
     }
@@ -60,7 +60,7 @@ A Xendit Wrapper for Laravel
         try {
             $response = \Xendit::getInvoiceById($request->invoice_id);
 
-            if (in_array($response->status, ['Paid', 'Settled'])) {
+            if (in_array(strtolower($response['status']), ['paid', 'settled'])) {
                 // TODO: Set payment status in merchant's database to 'success'
             }
         } catch (\Throwable $th) {
