@@ -1,0 +1,62 @@
+{
+    "name": "khidirdotid/xendit-laravel",
+    "type": "library",
+    "description": "A Xendit Wrapper for Laravel",
+    "keywords": [
+        "xendit",
+        "laravel"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Khidir Zahid",
+            "email": "khidirdotid@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0",
+        "xendit/xendit-php": "^6.0"
+    },
+    "require-dev": {
+        "nunomaduro/collision": "^8.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "KhidirDotID\\Xendit\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "KhidirDotID\\Xendit\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "KhidirDotID\\Xendit\\Providers\\XenditServiceProvider"
+            ],
+            "aliases": {
+                "Xendit": "KhidirDotID\\Xendit\\Facades\\Xendit"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "funding": [
+        {
+            "type": "saweria",
+            "url": "https://saweria.co/khidirdotid"
+        }
+    ]
+}
