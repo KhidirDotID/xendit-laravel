@@ -4,6 +4,7 @@ namespace KhidirDotID\Xendit;
 
 use Xendit\Configuration;
 use Xendit\Invoice\CreateInvoiceRequest;
+use Xendit\Invoice\CustomerObject;
 use Xendit\Invoice\Invoice;
 use Xendit\Invoice\InvoiceApi;
 
@@ -46,8 +47,12 @@ class Xendit
      * @param  array $data Payment options
      * @throws \Exception curl error or xendit error
      */
-    public static function createInvoice($data): Invoice
+    public static function createInvoice(array $data): Invoice
     {
+        if (isset($data['customer'])) {
+            $data['customer'] = new CustomerObject($data['customer']);
+        }
+
         $createInvoiceRequest = new CreateInvoiceRequest($data);
 
         return (new InvoiceApi())->createInvoice($createInvoiceRequest);
